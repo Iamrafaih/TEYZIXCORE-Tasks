@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f3f3f3;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 400px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .radio-group,
+        .checkbox-group {
+            margin-top: 10px;
+        }
+        .radio-group label,
+        .checkbox-group label {
+            display: inline-block;
+            margin-right: 16px;
+            font-weight: normal;
+        }
+        button {
+            margin-top: 18px;
+            padding: 10px 18px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:disabled {
+            background: #999;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <h1>Registration Form</h1>
+    <p><a href="about.html" style="color:#007bff; text-decoration:none;">← Back to About Us</a></p>
+    <form id="userForm">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName" placeholder="Enter first name" required>
+
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="lastName" placeholder="Enter last name" required>
+
+        <div class="radio-group">
+            <p>Choose an option:</p>
+            <label><input type="radio" name="choice" value="option1" required> Option 1</label>
+            <label><input type="radio" name="choice" value="option2"> Option 2</label>
+        </div>
+
+        <div class="checkbox-group">
+            <label>
+                <input type="checkbox" id="confirmCheck"> I confirm the details are correct
+            </label>
+        </div>
+
+        <button type="submit" id="submitButton" disabled>Submit</button>
+    </form>
+
+    <script>
+        const confirmCheck = document.getElementById('confirmCheck');
+        const submitButton = document.getElementById('submitButton');
+        const userForm = document.getElementById('userForm');
+
+        confirmCheck.addEventListener('change', function () {
+            submitButton.disabled = !this.checked;
+        });
+
+        userForm.addEventListener('submit', function (event) {
+            if (!confirmCheck.checked) {
+                event.preventDefault();
+                alert('Please confirm the details before submitting.');
+            }
+        });
+    </script>
+</body>
+</html>
